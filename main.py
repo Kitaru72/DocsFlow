@@ -16,7 +16,14 @@ def main():
             university,
             faculty,
         )
-        print(student)
+
+        print()
+        print("Профиль студента создан:")
+        print(f"ФИО: {student['full_name']}")
+        print(f"Группа: {student['group']}")
+        print(f"Университет: {student['university']}")
+        print(f"Факультет: {student['faculty']}")
+
     except ValueError as error:
         print(f"Ошибка: {error}")
 
