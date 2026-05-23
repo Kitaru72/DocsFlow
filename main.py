@@ -1,4 +1,4 @@
-from app.profiles import create_student_profile
+from app.profiles import create_student_profile, format_student_profile
 
 
 def main():
@@ -17,12 +17,8 @@ def main():
             faculty,
         )
 
-        print()
-        print("Профиль студента создан:")
-        print(f"ФИО: {student['full_name']}")
-        print(f"Группа: {student['group']}")
-        print(f"Университет: {student['university']}")
-        print(f"Факультет: {student['faculty']}")
+        student_info = format_student_profile(student)
+        print(student_info)
 
     except ValueError as error:
         print(f"Ошибка: {error}")

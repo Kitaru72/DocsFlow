@@ -24,3 +24,15 @@ def create_student_profile(full_name, group, university, faculty):
     }
 
     return student
+
+
+def format_student_profile(student):
+    profile_text = (
+        "\nПрофиль студента создан:\n"
+        f"ФИО: {student['full_name']}\n"
+        f"Группа: {student['group']}\n"
+        f"Университет: {student['university']}\n"
+        f"Факультет: {student['faculty']}\n"
+    )
+
+    return profile_text
