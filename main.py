@@ -5,11 +5,16 @@ def main():
     print("DocsFlow запущен.")
 
     try:
+        full_name = input("Введите ваше ФИО: ")
+        group = input("Введите вашу группу: ")
+        university = input("Введите ваш университет: ")
+        faculty = input("Введите ваш факультет: ")
+
         student = create_student_profile(
-            "Колесниченко Иван Александрович   ",
-            "3403  ",
-            "НВГУ",
-            "ИСиТ",
+            full_name,
+            group,
+            university,
+            faculty,
         )
         print(student)
     except ValueError as error:
