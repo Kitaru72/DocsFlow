@@ -18,5 +18,7 @@ def load_student_profile(path=DEFAULT_PROFILE_PATH):
             output_profile = json.load(file)
     except OSError:
         raise ValueError(f"Файл {path} отсутствует")
+    except json.JSONDecodeError:
+        raise ValueError(f"Файл {path} содержит некорректный JSON")
 
     return output_profile
