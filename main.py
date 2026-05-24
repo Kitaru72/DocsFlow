@@ -18,15 +18,14 @@ def main():
             faculty,
         )
 
-        student_info = format_student_profile(student)
+        student_info = format_student_profile(student, "created")
         print(student_info)
 
         save_student_profile(student)
         print("\nДанные профиля студента записаны в файл data/profile.json")
 
-        print("\nПрофиль загружен из JSON:")
         loaded_student = load_student_profile()
-        loaded_student_info = format_student_profile(loaded_student_info)
+        loaded_student_info = format_student_profile(loaded_student, "loaded")
         print(loaded_student_info)
 
     except ValueError as error:

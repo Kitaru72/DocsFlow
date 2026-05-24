@@ -26,9 +26,18 @@ def create_student_profile(full_name, group, university, faculty):
     return student
 
 
-def format_student_profile(student):
+def format_student_profile(student, mode):
+    titles = {
+        "created": "Профиль студента создан:",
+        "loaded": "Профиль студента загружен:",
+    }
+
+    if mode not in titles:
+        raise ValueError("Выбран неверный режим форматирования профиля студента")
+
+    title = titles[mode]
     profile_text = (
-        "\nПрофиль студента создан:\n"
+        f"\n{title}\n"
         f"ФИО: {student['full_name']}\n"
         f"Группа: {student['group']}\n"
         f"Университет: {student['university']}\n"
