@@ -32,7 +32,7 @@ def format_student_profile(student):
         f"ФИО: {student['full_name']}\n"
         f"Группа: {student['group']}\n"
         f"Университет: {student['university']}\n"
-        f"Факультет: {student['faculty']}\n"
+        f"Факультет: {student['faculty']}"
     )
 
     return profile_text

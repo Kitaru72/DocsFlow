@@ -1,4 +1,5 @@
 from app.profiles import create_student_profile, format_student_profile
+from app.storage import save_student_profile
 
 
 def main():
@@ -19,6 +20,9 @@ def main():
 
         student_info = format_student_profile(student)
         print(student_info)
+
+        save_student_profile(student)
+        print("\nДанные профиля студента записаны в файл data/profile.json")
 
     except ValueError as error:
         print(f"Ошибка: {error}")
