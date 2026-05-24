@@ -1,5 +1,5 @@
 from app.profiles import create_student_profile, format_student_profile
-from app.storage import load_student_profile, save_student_profile
+from app.storage import DEFAULT_PROFILE_PATH, load_student_profile, save_student_profile
 
 
 def main():
@@ -22,8 +22,7 @@ def main():
         print(student_info)
 
         save_student_profile(student)
-        print("\nДанные профиля студента записаны в файл data/profile.json")
-
+        print(f"\nДанные профиля студента записаны в файл {DEFAULT_PROFILE_PATH}")
         loaded_student = load_student_profile()
         loaded_student_info = format_student_profile(loaded_student, "loaded")
         print(loaded_student_info)

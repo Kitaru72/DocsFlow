@@ -1,19 +1,22 @@
 import json
 
 
-def save_student_profile(student):
+DEFAULT_PROFILE_PATH = "data/profile.json"
+
+
+def save_student_profile(student, path=DEFAULT_PROFILE_PATH):
     try:
-        with open("data/profile.json", "w", encoding="utf-8") as file:
+        with open(path, "w", encoding="utf-8") as file:
             json.dump(student, file, ensure_ascii=False, indent=4)
     except OSError:
-        raise ValueError("\nОшибка записи профиля студента в data/profile.json")
+        raise ValueError(f"\nОшибка записи профиля студента в {path}")
 
 
-def load_student_profile():
+def load_student_profile(path=DEFAULT_PROFILE_PATH):
     try:
-        with open("data/profile.json", "r", encoding="utf-8") as file:
+        with open(path, "r", encoding="utf-8") as file:
             output_profile = json.load(file)
     except OSError:
-        raise ValueError("Файл data/profile.json отсутствует")
+        raise ValueError(f"Файл {path} отсутствует")
 
     return output_profile
