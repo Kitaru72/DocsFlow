@@ -27,3 +27,26 @@ def create_lab_report(discipline, lab_number, topic, tasks):
     }
 
     return report
+
+
+def format_lab_report(report, mode):
+    titles = {
+        "created": "Отчет создан:",
+    }
+
+    if mode not in titles:
+        raise ValueError("Режим форматирования отчета указан неверно")
+
+    title = titles[mode]
+    lines = []
+
+    lines.append(f"\n{title}")
+    lines.append(f"Дисциплина: {report['discipline']}")
+    lines.append(f"Номер лабораторной работы: {report['lab_number']}")
+    lines.append(f"Тема лабораторной работы: {report['topic']}")
+    lines.append("Задания:")
+
+    for i, task in enumerate(report["tasks"], start=1):
+        lines.append(f"Задание {i}. {task}")
+
+    return "\n".join(lines)

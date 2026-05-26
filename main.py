@@ -1,5 +1,5 @@
 from app.profiles import create_student_profile, format_student_profile
-from app.reports import create_lab_report
+from app.reports import create_lab_report, format_lab_report
 from app.storage import DEFAULT_PROFILE_PATH, load_student_profile, save_student_profile
 
 
@@ -28,7 +28,7 @@ def main():
         loaded_student_info = format_student_profile(loaded_student, "loaded")
         print(loaded_student_info)
 
-        discipline = input("Введите название дисциплины: ")
+        discipline = input("\nВведите название дисциплины: ")
         lab_number = input("Введите номер лабораторной работы: ")
         topic = input("Введите тему лабораторной работы: ")
 
@@ -44,7 +44,8 @@ def main():
             tasks,
         )
 
-        print(report)
+        report_info = format_lab_report(report, "created")
+        print(report_info)
 
     except ValueError as error:
         print(f"Ошибка: {error}")
