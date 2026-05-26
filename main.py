@@ -1,6 +1,13 @@
 from app.profiles import create_student_profile, format_student_profile
 from app.reports import create_lab_report, format_lab_report
-from app.storage import DEFAULT_PROFILE_PATH, load_student_profile, save_student_profile
+from app.storage import (
+    PROFILE_PATH,
+    REPORT_PATH,
+    load_lab_report,
+    load_student_profile,
+    save_lab_report,
+    save_student_profile,
+)
 
 
 def main():
@@ -23,7 +30,7 @@ def main():
         print(student_info)
 
         save_student_profile(student)
-        print(f"\nДанные профиля студента записаны в файл {DEFAULT_PROFILE_PATH}")
+        print(f"\nДанные профиля студента записаны в файл {PROFILE_PATH}")
         loaded_student = load_student_profile()
         loaded_student_info = format_student_profile(loaded_student, "loaded")
         print(loaded_student_info)
@@ -43,9 +50,12 @@ def main():
             topic,
             tasks,
         )
+        save_lab_report(report)
+        print(f"\nДанные отчета записаны в файл {REPORT_PATH}")
 
-        report_info = format_lab_report(report, "created")
-        print(report_info)
+        loaded_report = load_lab_report()
+        loaded_report_info = format_lab_report(loaded_report, "loaded")
+        print(loaded_report_info)
 
     except ValueError as error:
         print(f"Ошибка: {error}")

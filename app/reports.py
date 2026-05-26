@@ -32,6 +32,7 @@ def create_lab_report(discipline, lab_number, topic, tasks):
 def format_lab_report(report, mode):
     titles = {
         "created": "Отчет создан:",
+        "loaded": "Отчет загружен:",
     }
 
     if mode not in titles:
