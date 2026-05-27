@@ -1,3 +1,4 @@
+from app.cli import ask_positive_int
 from app.profiles import create_student_profile, format_student_profile
 from app.reports import create_lab_report, format_lab_report
 from app.storage import (
@@ -38,8 +39,8 @@ def main():
         discipline = input("\nВведите название дисциплины: ")
         lab_number = input("Введите номер лабораторной работы: ")
         topic = input("Введите тему лабораторной работы: ")
+        count = ask_positive_int("Введите количество заданий: ")
 
-        count = int(input("Введите количество заданий: "))
         tasks = []
         for i in range(count):
             tasks.append(input(f"Введите задание номер {i+1}: "))

@@ -39,4 +39,3 @@ def save_lab_report(report, path=REPORT_PATH):
 
 def load_lab_report(path=REPORT_PATH):
     return load_json(path)
-
