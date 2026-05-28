@@ -1,4 +1,9 @@
 from app.cli import ask_positive_int
+from app.docx_generator import (
+    STUDENT_REPORT_PATH,
+    create_document_data,
+    save_student_report,
+)
 from app.profiles import create_student_profile, format_student_profile
 from app.reports import create_lab_report, format_lab_report
 from app.storage import (
@@ -57,6 +62,10 @@ def main():
         loaded_report = load_lab_report()
         loaded_report_info = format_lab_report(loaded_report, "loaded")
         print(loaded_report_info)
+
+        merged_data = create_document_data(loaded_student, loaded_report)
+        save_student_report(merged_data)
+        print(f"Отчет сохранен по пути: {STUDENT_REPORT_PATH}")
 
     except ValueError as error:
         print(f"Ошибка: {error}")
