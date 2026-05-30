@@ -1,9 +1,11 @@
+from pathlib import Path
+
 from docx import Document
-from docx.shared import Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH as ALIGN
+from docx.shared import Pt
 
 
-STUDENT_REPORT_PATH = "output/student_report.docx"
+OUTPUT_DIR = Path("output")
 
 
 def create_document_data(student, report):
@@ -13,7 +15,10 @@ def create_document_data(student, report):
     }
 
 
-def save_student_report(report_data, path=STUDENT_REPORT_PATH):
+def save_student_report(report_data, path=None):
+    if path is None:
+        path = create_student_report_path(report_data)
+
     doc = Document()
 
     student = report_data["student"]
@@ -58,7 +63,7 @@ def save_student_report(report_data, path=STUDENT_REPORT_PATH):
 
     p = doc.add_paragraph()
     p.alignment = ALIGN.CENTER
-    run_city = p.add_run("Нижевартовск, 2026")
+    run_city = p.add_run("Нижневартовск, 2026")
     run_city.bold = True
 
     p = doc.add_paragraph()
@@ -78,3 +83,15 @@ def save_student_report(report_data, path=STUDENT_REPORT_PATH):
         doc.save(path)
     except OSError:
         raise ValueError(f"Не удалось сохранить файл {path}")
+
+    return path
+
+
+def create_student_report_path(report_data):
+    last_name = report_data["student"]["full_name"].split()[0]
+    group = report_data["student"]["group"]
+    lab_number = report_data["report"]["lab_number"]
+
+    filename = f"{last_name}_{group}_lab{lab_number}.docx"
+
+    return OUTPUT_DIR / filename

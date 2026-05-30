@@ -1,6 +1,5 @@
 from app.cli import ask_positive_int
 from app.docx_generator import (
-    STUDENT_REPORT_PATH,
     create_document_data,
     save_student_report,
 )
@@ -64,8 +63,8 @@ def main():
         print(loaded_report_info)
 
         merged_data = create_document_data(loaded_student, loaded_report)
-        save_student_report(merged_data)
-        print(f"Отчет сохранен по пути: {STUDENT_REPORT_PATH}")
+        saved_report_path = save_student_report(merged_data)
+        print(f"Отчет сохранен по пути: {saved_report_path}")
 
     except ValueError as error:
         print(f"Ошибка: {error}")
