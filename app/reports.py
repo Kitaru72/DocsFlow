@@ -1,4 +1,4 @@
-def create_lab_report(discipline, lab_number, topic, tasks):
+def create_report_data(discipline, lab_number, topic, tasks):
     if len(tasks) == 0:
         raise ValueError("Список заданий не может быть пустым")
 
@@ -19,35 +19,35 @@ def create_lab_report(discipline, lab_number, topic, tasks):
         if tasks[i] == "":
             raise ValueError("Поле \"Список заданий\" не может быть пустым")
 
-    report = {
+    report_data = {
         "discipline": discipline,
         "lab_number": lab_number,
         "topic": topic,
         "tasks": tasks,
     }
 
-    return report
+    return report_data
 
 
-def format_lab_report(report, mode):
+def format_report_data(report_data, mode):
     titles = {
-        "created": "Отчет создан:",
-        "loaded": "Отчет загружен:",
+        "created": "Данные отчета созданы:",
+        "loaded": "Данные отчета загружены:",
     }
 
     if mode not in titles:
-        raise ValueError("Режим форматирования отчета указан неверно")
+        raise ValueError("Режим форматирования данных отчета указан неверно")
 
     title = titles[mode]
     lines = []
 
     lines.append(f"\n{title}")
-    lines.append(f"Дисциплина: {report['discipline']}")
-    lines.append(f"Номер лабораторной работы: {report['lab_number']}")
-    lines.append(f"Тема лабораторной работы: {report['topic']}")
+    lines.append(f"Дисциплина: {report_data['discipline']}")
+    lines.append(f"Номер лабораторной работы: {report_data['lab_number']}")
+    lines.append(f"Тема лабораторной работы: {report_data['topic']}")
     lines.append("Задания:")
 
-    for i, task in enumerate(report["tasks"], start=1):
+    for i, task in enumerate(report_data["tasks"], start=1):
         lines.append(f"Задание {i}. {task}")
 
     return "\n".join(lines)

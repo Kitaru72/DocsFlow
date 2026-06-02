@@ -1,4 +1,4 @@
-def create_student_profile(full_name, group, university, faculty):
+def create_profile(full_name, group, university, faculty):
     full_name = full_name.strip()
     group = group.strip()
     university = university.strip()
@@ -16,32 +16,32 @@ def create_student_profile(full_name, group, university, faculty):
     if faculty == "":
         raise ValueError("Факультет не может быть пустой")
 
-    student = {
+    profile = {
         "full_name": full_name,
         "group": group,
         "university": university,
         "faculty": faculty,
     }
 
-    return student
+    return profile
 
 
-def format_student_profile(student, mode):
+def format_profile(profile, mode):
     titles = {
-        "created": "Профиль студента создан:",
-        "loaded": "Профиль студента загружен:",
+        "created": "Профиль создан:",
+        "loaded": "Профиль загружен:",
     }
 
     if mode not in titles:
-        raise ValueError("Выбран неверный режим форматирования профиля студента")
+        raise ValueError("Выбран неверный режим форматирования профиля")
 
     title = titles[mode]
     profile_text = (
         f"\n{title}\n"
-        f"ФИО: {student['full_name']}\n"
-        f"Группа: {student['group']}\n"
-        f"Университет: {student['university']}\n"
-        f"Факультет: {student['faculty']}"
+        f"ФИО: {profile['full_name']}\n"
+        f"Группа: {profile['group']}\n"
+        f"Университет: {profile['university']}\n"
+        f"Факультет: {profile['faculty']}"
     )
 
     return profile_text

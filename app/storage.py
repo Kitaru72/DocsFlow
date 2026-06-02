@@ -1,8 +1,9 @@
 import json
+from pathlib import Path
 
 
-PROFILE_PATH = "data/profile.json"
-REPORT_PATH = "data/report.json"
+PROFILE_DIR = Path("data/profiles")
+REPORT_DIR = Path("data/reports")
 
 
 def save_json(data, path):
@@ -25,17 +26,42 @@ def load_json(path):
     return data
 
 
-def save_student_profile(student, path=PROFILE_PATH):
-    save_json(student, path)
+def save_profile(profile, path):
+    save_json(profile, path)
 
 
-def load_student_profile(path=PROFILE_PATH):
+def load_profile(path):
     return load_json(path)
 
 
-def save_lab_report(report, path=REPORT_PATH):
+def save_report_data(report, path):
     save_json(report, path)
 
 
-def load_lab_report(path=REPORT_PATH):
+def load_report_data(path):
     return load_json(path)
+
+
+def search_files(directory, extension):
+    directory_path = Path(directory)
+    files = list(directory_path.glob(f"*.{extension}"))
+    return files
+
+
+def create_profile_path(profile):
+    full_name = profile["full_name"]
+    group = profile["group"]
+
+    filename = f"{full_name}. Группа {group}.json"
+
+    return Path(PROFILE_DIR / filename)
+
+
+def create_report_data_path(report_data):
+    discipline = report_data["discipline"]
+    lab_number = report_data["lab_number"]
+    topic = report_data["topic"]
+
+    filename = f"{discipline}. {topic}. Лаб.{lab_number}.json"
+
+    return Path(REPORT_DIR / filename)

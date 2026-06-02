@@ -8,16 +8,16 @@ from docx.shared import Pt
 OUTPUT_DIR = Path("output")
 
 
-def create_document_data(student, report):
+def create_document_data(student, report_data):
     return {
         "student": student,
-        "report": report,
+        "report": report_data,
     }
 
 
-def save_student_report(report_data, path=None):
+def save_docx(report_data, path=None):
     if path is None:
-        path = create_student_report_path(report_data)
+        path = create_docx_path(report_data)
 
     doc = Document()
 
@@ -87,11 +87,11 @@ def save_student_report(report_data, path=None):
     return path
 
 
-def create_student_report_path(report_data):
+def create_docx_path(report_data):
     last_name = report_data["student"]["full_name"].split()[0]
     group = report_data["student"]["group"]
     lab_number = report_data["report"]["lab_number"]
 
-    filename = f"{last_name}_{group}_lab{lab_number}.docx"
+    filename = f"{last_name}_{group}_лаб{lab_number}.docx"
 
     return OUTPUT_DIR / filename
