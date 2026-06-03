@@ -4,6 +4,8 @@ from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH as ALIGN
 from docx.shared import Pt
 
+from app.storage import sanitize_filename
+
 
 OUTPUT_DIR = Path("output")
 
@@ -95,5 +97,6 @@ def create_docx_path(report_data):
     lab_number = report_data["report"]["lab_number"]
 
     filename = f"{last_name}_{group}_лаб{lab_number}.docx"
+    formatted_filename = sanitize_filename(filename)
 
-    return OUTPUT_DIR / filename
+    return OUTPUT_DIR / formatted_filename

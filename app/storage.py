@@ -55,8 +55,9 @@ def create_profile_path(profile):
     group = profile["group"]
 
     filename = f"{full_name}. Группа {group}.json"
+    formatted_filename = sanitize_filename(filename)
 
-    return Path(PROFILE_DIR / filename)
+    return Path(PROFILE_DIR / formatted_filename)
 
 
 def create_report_data_path(report_data):
@@ -65,5 +66,16 @@ def create_report_data_path(report_data):
     topic = report_data["topic"]
 
     filename = f"{discipline}. {topic}. Лаб.{lab_number}.json"
+    formatted_filename = sanitize_filename(filename)
 
-    return Path(REPORT_DIR / filename)
+    return Path(REPORT_DIR / formatted_filename)
+
+
+def sanitize_filename(filename):
+    forbidden_chars = ["\\", "/", ":", "*", "?", '"', "<", ">", "|"]
+
+    for char in forbidden_chars:
+        filename = filename.replace(char, " ")
+
+    formatted_filename = " ".join(filename.split())
+    return formatted_filename
