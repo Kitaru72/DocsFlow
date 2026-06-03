@@ -7,11 +7,13 @@ REPORT_DIR = Path("data/reports")
 
 
 def save_json(data, path):
+    file_path = Path(path)
     try:
-        with open(path, "w", encoding="utf-8") as file:
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(file_path, "w", encoding="utf-8") as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
     except OSError:
-        raise ValueError(f"\nОшибка записи JSON в {path}")
+        raise ValueError(f"\nОшибка записи JSON в {file_path}")
 
 
 def load_json(path):

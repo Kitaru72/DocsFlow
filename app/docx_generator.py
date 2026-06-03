@@ -79,12 +79,14 @@ def save_docx(report_data, path=None):
         run = p.add_run(f"{task}")
         run.bold = False
 
+    file_path = Path(path)
     try:
-        doc.save(path)
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+        doc.save(file_path)
     except OSError:
-        raise ValueError(f"Не удалось сохранить файл {path}")
+        raise ValueError(f"Не удалось сохранить файл {file_path}")
 
-    return path
+    return file_path
 
 
 def create_docx_path(report_data):
