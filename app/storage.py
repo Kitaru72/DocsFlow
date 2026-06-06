@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 
+from app.validation import validate_profile_data, validate_report_data
+
 
 PROFILE_DIR = Path("data/profiles")
 REPORT_DIR = Path("data/reports")
@@ -29,19 +31,25 @@ def load_json(path):
 
 
 def save_profile(profile, path):
+    validate_profile_data(profile)
     save_json(profile, path)
 
 
 def load_profile(path):
-    return load_json(path)
+    profile = load_json(path)
+    validate_profile_data(profile)
+    return profile
 
 
-def save_report_data(report, path):
-    save_json(report, path)
+def save_report_data(report_data, path):
+    validate_report_data(report_data)
+    save_json(report_data, path)
 
 
 def load_report_data(path):
-    return load_json(path)
+    report_data = load_json(path)
+    validate_report_data(report_data)
+    return report_data
 
 
 def search_files(directory, extension):
