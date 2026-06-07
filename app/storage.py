@@ -83,7 +83,7 @@ def sanitize_filename(filename):
     forbidden_chars = ["\\", "/", ":", "*", "?", '"', "<", ">", "|"]
 
     for char in forbidden_chars:
-        filename = filename.replace(char, " ")
+        filename = filename.replace(char, "")
 
     formatted_filename = " ".join(filename.split())
     return formatted_filename
