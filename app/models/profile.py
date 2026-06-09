@@ -9,13 +9,13 @@ class Profile:
             raise ValueError("Поле ФИО не может быть пустым")
 
         if self.group == "":
-            raise ValueError("Поле группа не может быть пустым")
+            raise ValueError("Поле группы не может быть пустым")
 
         if self.university == "":
-            raise ValueError("Поле университет не может быть пустым")
+            raise ValueError("Поле университета не может быть пустым")
 
         if self.faculty == "":
-            raise ValueError("Поле факультет не может быть пустым")
+            raise ValueError("Поле факультета не может быть пустым")
 
     def to_dict(self):
         return {

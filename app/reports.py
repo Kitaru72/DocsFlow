@@ -1,32 +1,15 @@
+from app.models import ReportData
+
+
 def create_report_data(discipline, lab_number, topic, tasks):
-    if len(tasks) == 0:
-        raise ValueError("Список заданий не может быть пустым")
+    report_data = ReportData(
+        discipline,
+        lab_number,
+        topic,
+        tasks,
+    )
 
-    discipline = discipline.strip()
-    lab_number = lab_number.strip()
-    topic = topic.strip()
-    for i in range(len(tasks)):
-        tasks[i] = tasks[i].strip()
-
-    if discipline == "":
-        raise ValueError("Поле \"Дисциплина\" не может быть пустым")
-    if lab_number == "":
-        raise ValueError("Поле \"Номер лабораторной работы\" не может быть пустым")
-    if topic == "":
-        raise ValueError("Поле \"Тема лабораторной работы\" не может быть пустым")
-
-    for i in range(len(tasks)):
-        if tasks[i] == "":
-            raise ValueError("Поле \"Список заданий\" не может быть пустым")
-
-    report_data = {
-        "discipline": discipline,
-        "lab_number": lab_number,
-        "topic": topic,
-        "tasks": tasks,
-    }
-
-    return report_data
+    return report_data.to_dict()
 
 
 def format_report_data(report_data, mode):
