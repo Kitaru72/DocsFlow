@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
+from app.models import Profile, ReportData
 from app.validation import validate_profile_data, validate_report_data
-from app.models import Profile
 
 
 PROFILE_DIR = Path("data/profiles")
@@ -53,7 +53,10 @@ def save_report_data(report_data, path):
 def load_report_data(path):
     report_data = load_json(path)
     validate_report_data(report_data)
-    return report_data
+
+    report = ReportData.from_dict(report_data)
+
+    return report.to_dict()
 
 
 def search_files(directory, extension):
