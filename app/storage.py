@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from app.validation import validate_profile_data, validate_report_data
+from app.models import Profile
 
 
 PROFILE_DIR = Path("data/profiles")
@@ -36,9 +37,12 @@ def save_profile(profile, path):
 
 
 def load_profile(path):
-    profile = load_json(path)
-    validate_profile_data(profile)
-    return profile
+    profile_data = load_json(path)
+    validate_profile_data(profile_data)
+
+    profile = Profile.from_dict(profile_data)
+
+    return profile.to_dict()
 
 
 def save_report_data(report_data, path):
